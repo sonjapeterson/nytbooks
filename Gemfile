@@ -24,7 +24,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'd3-rails', '~> 3.4.4'
-gem 'c3-rails', '~> 0.0.5'
 
 gem 'httparty', '~> 0.13.1'
 gem 'nytimes-bestsellers', '~> 0.0.5'
@@ -32,6 +31,9 @@ gem 'nytimes-bestsellers', '~> 0.0.5'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,7 +1,13 @@
 class Book < ActiveRecord::Base
 	has_many :ranks
 
-	def reverseposition
-		(self.position - 20).abs
+	def weeksonlist
+		self.ranks.count
 	end
+
+	def slug
+		# downcase all letter, remove trailing whitespace, replace spaces with dashes
+		self.title.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')
+	end
+
 end

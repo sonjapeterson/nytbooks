@@ -1,0 +1,46 @@
+<h1>Longest Running Fiction Bestsellers, 2013</h1>
+<h2><span class="color1">E-books, </span><span class="color2">Hardcover, </span><span class="color3">Trade Paperbacks, </span><span class="color4">Mass-Market Paperbacks</span></h2>
+<div id="chart"></div>
+<script>
+var chart = c3.generate({
+    size: {
+        height: 600,
+        width: 1500
+    },
+    data: {
+            xs: {<% @books.each do |book| %>
+                '<%=book.slug%>_<%=book.list_id%>': '<%=book.slug%>_<%=book.list_id%>_dates',<% end %>
+            },
+            columns: [<% @books.each do |book| %>
+                ['<%=book.slug%>_<%=book.list_id%>_dates', <% book.ranks.each do |rank| %>'<%=rank.date%>', <% end %>],<% end %><% @books.each do |book| %>
+                ['<%=book.slug%>_<%=book.list_id%>', <% book.ranks.each do |rank| %><%=rank.reverseposition%>, <% end %>],<% end %>
+            ],
+            colors: {<% @books.each do |book| %>
+                <%=book.slug%>_<%=book.list_id%>: <% if book.list_id == 1 %>'#4ECDC4', <% elsif book.list_id == 2 %>'#C7F464', <% elsif book.list_id == 3 %>'#FF6B6B', <% else %>'#556270', <% end %><% end %>
+            },
+            names: {<% @books.each do |book| %>
+            <%=book.slug%>_<%=book.list_id%>: '<%=book.title%>', <% end %>
+            },
+        },
+
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%m-%d-%Y'
+            }
+        },
+        y: {
+            label: 'Rank from highest to lowest',
+            position: 'outer-center',
+            show: false
+        }
+    },
+    zoom: {
+        enabled: true
+    },
+    legend: {
+        position: 'right'
+    } 
+});
+</script>

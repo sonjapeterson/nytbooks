@@ -51,3 +51,17 @@ create_list('E-book Fiction')
   save_list('E-book Fiction', date.to_s)
 end
 
+create_list('Hardcover Fiction')
+(Date.new(2013, 01, 01)..Date.new(2014, 01, 01)).step(7) do |date|
+  save_list('Hardcover Fiction', date.to_s)
+end
+
+create_list('Trade Fiction Paperback')
+(Date.new(2013, 01, 01)..Date.new(2014, 01, 01)).step(7) do |date|
+  save_list('Trade Fiction Paperback', date.to_s)
+end
+
+create_list('Mass Market Paperback')
+(Date.new(2013, 01, 01)..Date.new(2014, 01, 01)).step(7) do |date|
+  save_list('Mass Market Paperback', date.to_s)
+end
