@@ -32,7 +32,7 @@ def save_list(listname, date)
 						author: result['book_details'][0]['author'],
 			 			publisher: result['book_details'][0]['publisher'],
 			 			description: result['book_details'][0]['description'],
-			 			isbn: result['book_details'][0]['primary_isbn13'],
+			 			# isbn: result['book_details'][0]['primary_isbn13'],
 			 			price: result['book_details'][0]['price'].to_f,
 			 			book_review_link: result['reviews'][0]['book_review_link'],
 			 			sunday_review_link: result['reviews'][0]['sunday_review_link'],

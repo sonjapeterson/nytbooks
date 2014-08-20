@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818003144) do
+ActiveRecord::Schema.define(version: 20140820194759) do
 
   create_table "books", force: true do |t|
     t.integer  "list_id"
@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 20140818003144) do
     t.string   "author"
     t.string   "publisher"
     t.text     "description"
-    t.integer  "isbn"
     t.decimal  "price"
     t.string   "book_review_link"
     t.string   "sunday_review_link"
     t.string   "book_image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "isbn"
   end
 
   create_table "lists", force: true do |t|
