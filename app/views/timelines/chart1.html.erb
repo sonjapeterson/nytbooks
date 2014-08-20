@@ -31,7 +31,7 @@ var chart = c3.generate({
         columns: [
         <% @books.each do |book| %>['<%=book.title%> DATES', <% book.ranks.each do |rank| %>'<%=rank.date%>', <% end %>],
                           <% end %>
-        <% @books.each do |book| %>['<%=book.title%>', <% book.ranks.each do |rank| %><%=rank.position%>, <% end %>],
+        <% @books.each do |book| %>['<%=book.title%>', <% book.ranks.each do |rank| %><%=rank.reverseposition%>, <% end %>],
                           <% end %>
         ]
     },
@@ -41,6 +41,11 @@ var chart = c3.generate({
             tick: {
                 format: '%m-%d-%Y'
             }
+        },
+        y: {
+            label: 'Rank from highest to lowest',
+            position: 'outer-center',
+            show: false
         }
     },
     zoom: {
