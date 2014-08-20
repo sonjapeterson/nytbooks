@@ -1,0 +1,84 @@
+<h1><%= @list.name %></h1>
+<div id="chart"></div>
+<script>
+
+// var chart = c3.generate({
+//     data: {
+//         xs: {
+//             'GONE GIRL': 'GONE GIRL DATES',
+//             'THE FORGOTTEN': 'THE FORGOTTEN DATES',
+//         },
+//         columns: [
+//             ['GONE GIRL DATES', 10, 30, 45, 50, 70, 100],
+//             ['THE FORGOTTEN DATES', 30, 50, 75, 100, 120],
+//             ['GONE GIRL', 30, 200, 100, 400, 150, 250],
+//             ['THE FORGOTTEN', 20, 180, 240, 100, 190]
+//         ]
+//     }
+// });
+
+
+var chart = c3.generate({
+    size: {
+        height: 600,
+        width: 3000
+    },
+    data: {
+        xs: {
+            <% @books.each do |book| %>'<%=book.title%>': '<%=book.title%> DATES',
+            <% end %>
+        },
+        columns: [
+        <% @books.each do |book| %>['<%=book.title%> DATES', <% book.ranks.each do |rank| %>'<%=rank.date%>', <% end %>],
+                          <% end %>
+        <% @books.each do |book| %>['<%=book.title%>', <% book.ranks.each do |rank| %><%=rank.position%>, <% end %>],
+                          <% end %>
+        ]
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%m-%d-%Y'
+            }
+        }
+    },
+    zoom: {
+        enabled: true
+    }
+});
+
+// var chart = c3.generate({
+//     data: {
+//         x: 'x',
+// //        x_format: '%Y%m%d', // 'x_format' can be used as custom format of 'x'
+//         columns: [
+//             ['x', 
+//             <% @books.first.ranks.each do |rank| %>'<%= rank.date.to_s %>',<% end %> 
+//             ],
+// //            ['x', '20130101', '20130102', '20130103', '20130104', '20130105', '20130106'],
+//             <% @books.each do |book| %>
+//             [ '<%=book.title %>', 
+//             <% book.ranks.each do |rank| %><%=rank.position %>, <% end %>
+//             ]
+//             <% end %>
+//         ]
+//     },
+//     axis: {
+//         x: {
+//             type: 'timeseries',
+//             tick: {
+//                 format: '%Y-%m-%d'
+//             }
+//         }
+//     }
+// });
+
+// setTimeout(function () {
+//     chart.load({
+//         columns: [
+//             ['data3', 400, 500, 450, 700, 600, 500]
+//         ]
+//     });
+// }, 1000);
+</script>
