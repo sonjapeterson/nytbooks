@@ -1,23 +1,9 @@
 <h1>Longest Running Fiction Bestsellers, 2013</h1>
-<%= form_tag('/overallinechart', method: :get) do %>
-<%= hidden_field_tag 'list', '1' %>
-<%= submit_tag 'E-book Fiction', :class => 'color1back' %>
+<% 4.times do |i| %>
+<a href="/listlinechart/<%= i + 1 %>" class="color<%=(i + 1)%>back button"><%= List.find(i + 1).name %></a>
 <% end %>
-<%= form_tag('/overallinechart', method: :get) do %>
-<%= hidden_field_tag 'list', '2' %>
-<%= submit_tag 'Hardcovers', :class => 'color2back' %>
-<% end %>
-<%= form_tag('/overallinechart', method: :get) do %>
-<%= hidden_field_tag 'list', '3' %>
-<%= submit_tag 'Trade Paperbacks', :class => 'color3back' %>
-<% end %>
-<%= form_tag('/overallinechart', method: :get) do %>
-<%= hidden_field_tag 'list', '4' %>
-<%= submit_tag 'Mass-market Paperbacks', :class => 'color4back' %>
-<% end %>
-<%= form_tag('/overallinechart', method: :get) do %>
-<%= submit_tag 'Combined', :class => 'color5back' %>
-<% end %>
+<a href="/listlinechart/all" class="color5back button">Combined</a>
+
 <!-- <h2><span class="color1">E-books, </span><span class="color2">Hardcover, </span><span class="color3">Trade Paperbacks, </span><span class="color4">Mass-Market Paperbacks</span></h2>
  -->
  <div id="chart"></div>
@@ -36,10 +22,10 @@ var chart = c3.generate({
                 ['<%=book.slug%>_<%=book.list_id%>', <% book.ranks.each do |rank| %><%=rank.reverseposition%>, <% end %>],<% end %>
             ],
             colors: {<% @books.each do |book| %>
-                <%=book.slug%>_<%=book.list_id%>: <% if book.list_id == 1 %>'#556270', <% elsif book.list_id == 2 %>'#4ECDC4', <% elsif book.list_id == 3 %>'#C7F464', <% else %>'#FF6B6B', <% end %><% end %>
+                <%=book.slug%>_<%=book.list_id%>: <% if book.list_id == 1 %>'#556270', <% elsif book.list_id == 2 %>'#C7F464', <% elsif book.list_id == 3 %>'#4ECDC4', <% else %>'#FF6B6B', <% end %><% end %>
             },
             names: {<% @books.each do |book| %>
-            <%=book.slug%>_<%=book.list_id%>: '<%=book.title%>', <% end %>
+            <%=book.slug%>_<%=book.list_id%>: '<%=book.titleformatted%>'.replace("&#39;", "'"), <% end %>
             },
         },
 
