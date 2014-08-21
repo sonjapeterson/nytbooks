@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'timelines#listlinechart'
+  get 'listlinechart' => 'timelines#listlinechart'
   get 'listlinechart/:list' => 'timelines#listlinechart'
   get 'testchart' => 'timelines#testchart'
   # The priority is based upon order of creation: first created -> highest priority.

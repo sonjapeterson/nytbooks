@@ -11,6 +11,7 @@ body {
 a {
 	text-decoration: none;
 }
+
 h1 {
 	color: $primarycolor;
 }
@@ -50,9 +51,9 @@ input[type=submit], button, .button {
 
 .color1back {
 background-color: $primarycolor;
-&:hover {
-	background-color: darken($primarycolor, 15%);
-}
+	&:hover {
+		background-color: darken($primarycolor, 15%);
+	}
 }
 
 .color2back {
