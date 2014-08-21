@@ -1,8 +1,11 @@
 class TimelinesController < ApplicationController
 	def overalllinechart
-		sortedbooks = Book.all.sort { |a,b| b.weeksonlist <=> a.weeksonlist }
-		@books = sortedbooks.take(20)
-		@list = List.find(@books.first.list_id)
+		@books = Book.all
+  		@books = @books.list(params[:list]).sort { |a,b| b.weeksonlist <=> a.weeksonlist } if params[:list].present?
+		if !params[:list].present?
+			@books = @books.sort { |a,b| b.weeksonlist <=> a.weeksonlist }
+		end
+		@books = @books.take(20)
 	end
 
 	def testchart

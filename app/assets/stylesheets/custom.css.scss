@@ -1,22 +1,81 @@
+$primarycolor: #556270;
+$color2: #4ECDC4;
+$color3: #C7F464;
+$color4: #FF6B6B;
+$color5: #C44D58;
+
 body {
 	font-family: 'Lato';
+	font-size: 14px;
 }
 h1 {
-	color: #556270;
+	color: $primarycolor;
 }
 
 .color1 {
-	color: #4ECDC4;
+	color: $primarycolor;
 }
 
 .color2 {
-	color: #C7F464;
+	color: $color2;
 }
 
 .color3 {
-	color: #FF6B6B;
+	color: $color3;
 }
 
 .color4 {
-	color: #556270;
+	color: $color4;
+}
+
+.color5 {
+	color: $color5;
+}
+
+form {
+	display: inline;
+}
+input[type=submit] {
+	border: 0px;
+	color: white;
+	display: inline;
+	padding: 0.4em;
+	margin-right: 0.2em;
+	height:2em;
+	font-size: 1.5em
+}
+
+.color1back {
+background-color: $primarycolor;
+&:hover {
+	background-color: darken($primarycolor, 15%);
+}
+}
+
+.color2back {
+background-color: $color2;
+&:hover {
+	background-color: darken($color2, 15%);
+}
+}
+
+.color3back {
+background-color: $color3;
+&:hover {
+	background-color: darken($color3, 15%);
+}
+}
+
+.color4back {
+background-color: $color4;
+&:hover {
+	background-color: darken($color4, 15%);
+}
+}
+
+.color5back {
+background-color: $color5;
+&:hover {
+	background-color: darken($color5, 15%);
+}
 }

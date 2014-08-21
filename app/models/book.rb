@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
 	has_many :ranks
+	scope :list, -> (list) { where list_id: list }
 
 	def weeksonlist
 		self.ranks.count
