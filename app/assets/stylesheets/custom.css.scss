@@ -7,13 +7,15 @@ $color5: #C44D58;
 body {
 	font-family: 'Lato';
 	font-size: 14px;
+	background-color: gray;
+	color: white;
 }
 a {
 	text-decoration: none;
 }
 
 h1 {
-	color: $primarycolor;
+	color: white;
 }
 
 .color1 {
@@ -87,3 +89,12 @@ background-color: $color5;
 #chart {
 	margin-top: 2em;
 }
+
+.legend span {
+    width: 33.333333%;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+

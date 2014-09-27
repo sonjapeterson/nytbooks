@@ -27,9 +27,25 @@ def save_list(listname, date)
 									list_id: List.find_by(name: listname).id).id,
 						position: result['rank'],
 						date: Date.parse(result['bestsellers_date']))
+		elsif Author.exists?(:name => result['book_details'][0]['author'])
+			book = Book.create(title: result['book_details'][0]['title'],
+						author_id: Author.find_by(name: result['book_details'][0]['author']).id, 
+			 			publisher: result['book_details'][0]['publisher'],
+			 			description: result['book_details'][0]['description'],
+			 			isbn: result['book_details'][0]['primary_isbn13'],
+			 			price: result['book_details'][0]['price'].to_f,
+			 			book_review_link: result['reviews'][0]['book_review_link'],
+			 			sunday_review_link: result['reviews'][0]['sunday_review_link'],
+			 			book_image: result['book_details'][0]['book_image'],
+			 			list_id: List.find_by(name: listname).id
+			 			 )
+			Rank.create(book_id: book.id, 
+						position: result['rank'], 
+						date: Date.parse(result['bestsellers_date']))
 		else
+			author = Author.create(name: result['book_details'][0]['author'])
 			book = Book.create(title: result['book_details'][0]['title'], 
-						author: result['book_details'][0]['author'],
+						author_id: author.id, 
 			 			publisher: result['book_details'][0]['publisher'],
 			 			description: result['book_details'][0]['description'],
 			 			isbn: result['book_details'][0]['primary_isbn13'],

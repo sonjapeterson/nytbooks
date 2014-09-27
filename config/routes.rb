@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'timelines#listlinechart'
-  get 'listlinechart' => 'timelines#listlinechart'
   get 'listlinechart/:list' => 'timelines#listlinechart'
   get 'testchart' => 'timelines#testchart'
+  get 'testlegend' => 'timelines#testlegend'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

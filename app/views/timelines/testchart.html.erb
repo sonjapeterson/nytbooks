@@ -1,37 +1,63 @@
+<h1>Longest Running Fiction Bestsellers, 2013</h1>
+
 <div id="chart"></div>
 <script>
 var chart = c3.generate({
-    data: {
-        xs: {
-            'data1': 'x1',
-            'data2': 'x2',
-        },
-        columns: [
-            ['x1', 10, 30, 45, 50, 70, 100, ],
-            ['x2', 30, 50, 75, 100, 120, ],
-            ['data1', 30, 200, 100, 400, 150, 250, ],
-            ['data2', 20, 180, 240, 100, 190, ],
-        ],
-        colors: {
-            data1: '#ff0000',
-            data2: '#00ff00',
-        }
+    size: {
+        height: 600,
+        width: 1500
     },
-     axis: {
+    data: {
+            xs: {<% @books.each do |book| %>
+                '<%=book.slug%>_<%=book.list_id%>': '<%=book.slug%>_<%=book.list_id%>_dates',<% end %>
+            },
+            columns: [<% @books.each do |book| %>
+                ['<%=book.slug%>_<%=book.list_id%>_dates', <% book.ranks.each do |rank| %>'<%=rank.date%>', <% end %>],<% end %><% @books.each do |book| %>
+                ['<%=book.slug%>_<%=book.list_id%>', <% book.ranks.each do |rank| %><%=rank.reverseposition%>, <% end %>],<% end %>
+            ],
+            colors: {<% @books.each do |book| %>
+                <%=book.slug%>_<%=book.list_id%>: <% if book.list_id == 1 %>'#556270', <% elsif book.list_id == 2 %>'#C7F464', <% elsif book.list_id == 3 %>'#4ECDC4', <% else %>'#FF6B6B', <% end %><% end %>
+            },
+            names: {<% @books.each do |book| %>
+            <%=book.slug%>_<%=book.list_id%>: '<%=book.titleformatted%>'.replace("&#39;", "'"), <% end %>
+            },
+        },
+
+    axis: {
         x: {
             type: 'timeseries',
+            label: {
+                text: 'Date',
+                position: 'outer-center'
+            },
             tick: {
                 format: '%m-%d-%Y'
             }
         },
         y: {
-            label: 'Rank from highest to lowest',
-            position: 'outer-center',
-            show: false
+            max: 20,
+            min: 2,
+            label: {
+                text: 'Bestseller list rank',
+                position: 'outer-middle',
+            },
+            tick: {
+                format: function (d) { return String(Math.abs(d - 21)); }
+            }
         }
     },
-    zoom: {
-        enabled: true
+    legend: {
+        position: 'right'
+    },
+    tooltip: {
+        format: {
+            title: function (d) {
+                date1 = new Date(d); 
+                return date1.toDateString(); },
+            value: function (value, ratio, id) {
+                return '#' + String(Math.abs(value - 21));
+            }
+        },
     }
 });
 </script>

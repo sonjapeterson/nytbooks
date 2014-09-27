@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
 	has_many :ranks
+	belongs_to :author
 	scope :list, -> (list) { where list_id: list }
 
 	def weeksonlist

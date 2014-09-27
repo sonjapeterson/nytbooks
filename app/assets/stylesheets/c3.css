@@ -5,14 +5,18 @@
 }
 .c3 path, .c3 line {
   fill: none;
-  stroke: #000;
+  stroke: white;
 }
 .c3 text {
+  fill: white;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
 
+/*.c3-legend-item text {
+  fill: white;
+}*/
 .c3-legend-item-tile,
 .c3-xgrid-focus,
 .c3-ygrid,
@@ -20,6 +24,9 @@
 .c3-bars path {
   shape-rendering: crispEdges;
 }
+
+.c3
+  fill: white;
 
 .c3-chart-arc path {
   stroke: #fff;
@@ -151,6 +158,10 @@
           box-shadow: 7px 7px 12px -9px rgb(119,119,119);
   opacity: 0.9;
 }
+
+.c3 .c3-tooltip td text {
+  fill: #000;
+}
 .c3-tooltip tr {
   border:1px solid #CCC;
 }
@@ -166,6 +177,7 @@
   padding: 3px 6px;
   background-color:#fff;
   border-left:1px dotted #999;
+  color: #000;
 }
 .c3-tooltip td > span {
   display: inline-block;
@@ -198,6 +210,6 @@
 }
 
 .c3-chart-arc .c3-gauge-value {
-  fill: #000;
+  fill: white;
   font-size: 28px;
 }
