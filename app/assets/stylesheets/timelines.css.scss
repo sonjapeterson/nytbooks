@@ -1,3 +1,104 @@
 // Place all the styles related to the timelines controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$primarycolor: #556270;
+$color2: #C7F464;
+$color3: #4ECDC4;
+$color4: #FF6B6B;
+$color5: #C44D58;
+
+body {
+	font-family: 'Lato';
+	font-size: 14px;
+	background-color: gray;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	color: white;
+}
+
+.color1 {
+	color: $primarycolor;
+}
+
+.color2 {
+	color: $color2;
+}
+
+.color3 {
+	color: $color3;
+}
+
+.color4 {
+	color: $color4;
+}
+
+.color5 {
+	color: $color5;
+}
+
+form {
+	display: inline;
+}
+input[type=submit], button, .button {
+	border: 0px;
+	color: white;
+	display: inline;
+	padding: 0.4em;
+	margin-right: 0.2em;
+	height:2em;
+	font-size: 1.5em
+}
+
+.color1back {
+background-color: $primarycolor;
+	&:hover {
+		background-color: darken($primarycolor, 15%);
+	}
+}
+
+.color2back {
+background-color: $color2;
+&:hover {
+	background-color: darken($color2, 15%);
+}
+}
+
+.color3back {
+background-color: $color3;
+&:hover {
+	background-color: darken($color3, 15%);
+}
+}
+
+.color4back {
+background-color: $color4;
+&:hover {
+	background-color: darken($color4, 15%);
+}
+}
+
+.color5back {
+background-color: $color5;
+&:hover {
+	background-color: darken($color5, 15%);
+}
+}
+
+#chart {
+	margin-top: 2em;
+	color: white;
+}
+
+.legend span {
+    width: 33.333333%;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}

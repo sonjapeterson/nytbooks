@@ -1,0 +1,115 @@
+<div id="tooltip" class="hidden">
+    <p class="tt-label">Height:</p>
+    <p class="tt-value">Value</p>
+</div>
+
+<%= javascript_tag do %>
+    var dataset = [];
+    for (i = 0; i < 20; i++ ) {
+                dataset[i] = Math.floor(Math.random() * (50 - 1) + 1);
+    };
+    var w = 600;
+    var h = 400;
+    var margin = 20;
+    var yScale = d3.scale.linear().domain([0, d3.max(dataset)]).range([0 + margin, h - margin]);
+    var xScale = d3.scale.linear().domain([0, dataset.length]).range([0 + margin, w - margin]);
+    var width = w / dataset.length;
+
+    var svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    var g = svg.append("g")
+        .attr("transform", "translate(0," + h + ")");
+
+    var line = d3.svg.line()
+        .x(function(d, i) { return xScale(i); })
+        .y(function(d) { return -1 * yScale(d); });
+
+    g.append("path")
+        .attr({
+            "d": line(dataset),
+    });
+    g.selectAll("circle")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr({
+            cx: function(d, i) { return xScale(i); },
+            cy: function(d) { return -1 * yScale(d); },
+            r: 4,
+            "class": "datapoint"
+        })
+
+    g.selectAll(".mouseline")
+        .data(dataset)
+        .enter()
+        .append("line")
+        .attr({
+            "x1": function(d, i) { return xScale(i); },
+            "y1": -1 * yScale(0),
+            "x2": function(d, i) { return xScale(i); },
+            "y2": -1 * yScale(d3.max(dataset)),
+            "class": "mouseline"
+        })
+        .style("stroke-width", width)
+        .on("mouseover", function(d, i){
+            var xPosition = parseFloat(d3.select(this).attr("x1"));
+            var yPosition = parseFloat(h - yScale(d));
+            
+            d3.select("#tooltip")
+            .style({
+                    "left": xPosition + "px",
+                    "top": yPosition + "px",
+            })
+            .classed("hidden", false)
+            .select(".tt-value")
+            .text(d);
+        })
+        .on("mouseout", function(d){
+             d3.select("#tooltip").classed("hidden", true);
+         });
+
+    g.append("line")
+        .attr({
+            "x1": xScale(0),
+            "y1": -1 * yScale(0),
+            "x2": xScale(w),
+            "y2": -1 * yScale(0),
+            "class": "axis"
+        });
+
+    g.append("line")
+        .attr({
+            "x1": xScale(0),
+            "y1": -1 * yScale(0),
+            "x2": xScale(0),
+            "y2": -1 * yScale(d3.max(dataset)),
+            "class": "axis"
+        });
+    g.selectAll(".xLabel")
+        .data(xScale.ticks(5))
+        .enter()
+        .append("text")
+        .attr({
+            "class": "xLabel",
+            "x": function(d) { return xScale(d) },
+            "y": 0,
+            "text-anchor": "middle"
+        })
+        .text(String)
+
+    g.selectAll(".yLabel")
+        .data(yScale.ticks(5))
+        .enter()
+        .append("text")
+        .attr({
+            "class": "yLabel",
+            "x": 0,
+            "y": function(d) { return -1 * yScale(d) },
+            "text-anchor": "right",
+            "dy": 4
+        })
+        .text(String);
+<% end %>

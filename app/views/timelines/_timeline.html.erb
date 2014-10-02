@@ -1,8 +1,3 @@
-<h1>Longest Running Fiction Bestsellers, 2013</h1>
-<% 4.times do |i| %>
-<a href="/listlinechart/<%= i + 1 %>" class="color<%=(i + 1)%>back button"><%= List.find(i + 1).name %></a>
-<% end %>
-<a href="/listlinechart/all" class="color5back button">Combined</a>
 <div id="chart"></div>
 <script>
 var chart = c3.generate({
@@ -63,4 +58,5 @@ var chart = c3.generate({
         },
     }
 });
+}
 </script>

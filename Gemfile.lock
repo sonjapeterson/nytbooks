@@ -142,6 +142,7 @@ DEPENDENCIES
   httparty (~> 0.13.1)
   jbuilder (~> 2.0)
   jquery-rails
+  json (~> 1.8.1)
   nytimes-bestsellers (~> 0.0.5)
   pg
   pry-rails
